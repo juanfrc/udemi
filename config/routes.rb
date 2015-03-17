@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :courses
   get 'courses/index'
 
   root :to => "courses#index"
