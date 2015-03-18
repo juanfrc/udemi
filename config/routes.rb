@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   
   get 'courses/index'
   get 'courses/subscribe'
+  get 'courses/unsubscribe'
 
   root :to => "courses#index"
 

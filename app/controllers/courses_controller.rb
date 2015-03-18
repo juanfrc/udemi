@@ -28,6 +28,11 @@ class CoursesController < ApplicationController
   end
 
   def unsubscribe
+    user = current_user
+    course = Course.find(params[:course_id])
+
+    user.courses.delete(course)
+    redirect_to root_path
   	
   end
 

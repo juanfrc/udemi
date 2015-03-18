@@ -5,7 +5,7 @@
 		<th>Course</th>
 		<th>Description</th>
 		<th>Author</th>
-		<th>Inscribirse | Desinscribirse</th>
+		<th>Action</th>
 	</thead>
 	<tbody>
 		<% @courses.each do |course| %>
@@ -18,7 +18,7 @@
 				<% else %>
 					<td>
 						<% if current_user.courses.include? course %>
-							<%= link_to "Unsubscribe" %>
+							<%= link_to "Unsubscribe", courses_unsubscribe_path(course_id: course.id) %>
 						<% else  %>
 							<%= link_to "Subscribe", courses_subscribe_path(course_id: course.id) %>
 						<% end %>
