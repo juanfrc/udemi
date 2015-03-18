@@ -18,6 +18,19 @@ class CoursesController < ApplicationController
   	end
   end
 
+  def subscribe
+  	user = current_user
+  	course = Course.find(params[:course_id])
+
+    user.courses << course
+
+    redirect_to root_path
+  end
+
+  def unsubscribe
+  	
+  end
+
 
   private
   	def course_params

@@ -1,4 +1,5 @@
 <h1>Courses</h1>
+
 <table>
 	<thead>
 		<th>Course</th>
@@ -12,7 +13,17 @@
 				<td><%= course.name %></td>
 				<td><%= course.description %></td>
 				<td><%= course.owner.email %></td>
-				<td>Link</td>
+				<% if course.owner_id == current_user.id %>
+					<td></td>
+				<% else %>
+					<td>
+						<% if current_user.courses.include? course %>
+							<%= link_to "Unsubscribe" %>
+						<% else  %>
+							<%= link_to "Subscribe", courses_subscribe_path(course_id: course.id) %>
+						<% end %>
+					</td>
+				<% end %>
 			</tr>	
 		<% end %>
 			

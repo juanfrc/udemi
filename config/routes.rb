@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :courses
+  
   get 'courses/index'
+  get 'courses/subscribe'
 
   root :to => "courses#index"
+
+  resources :courses
+
+  #https://mikeyhogarth.wordpress.com/2010/12/19/basic-activerecord-associations-overview/
+  #http://guides.rubyonrails.org/routing.html#adding-more-restful-actions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
