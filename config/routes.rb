@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  
-  get 'courses/index'
-  get 'courses/subscribe'
-  get 'courses/unsubscribe'
-
-  root :to => "courses#index"
-
+  get 'courses/index','courses/subscribe', 'courses/unsubscribe'
+  get 'courses/teacher'
   resources :courses
+
+devise_scope :user do
+  authenticated :user do
+    root :to => "courses#index"
+  end
+  unauthenticated :user do
+    root :to => 'devise/sessions#new', as: :unauthenticated_root
+  end
+end
+
 
   #https://mikeyhogarth.wordpress.com/2010/12/19/basic-activerecord-associations-overview/
   #http://guides.rubyonrails.org/routing.html#adding-more-restful-actions

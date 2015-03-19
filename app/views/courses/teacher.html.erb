@@ -1,0 +1,22 @@
+<h1>My Courses (Teacher)</h1>
+
+<%= link_to "All Courses", root_path %>
+
+<table>
+	<thead>
+		<th>Course</th>
+		<th>Description</th>
+		<th>Edit | Delete</th>
+	</thead>
+	<tbody>
+		<% @mycourses.each do |course| %>
+			<tr>  
+				<td><%= course.name %></td>
+				<td><%= course.description %></td>
+				<td><%= link_to "Edit"%> | <%= link_to "Delete", course_path(course), method: :delete %></td>
+			</tr>	
+		<% end %>
+	</tbody>
+</table>
+
+<%= link_to "Create Course", new_course_path %>

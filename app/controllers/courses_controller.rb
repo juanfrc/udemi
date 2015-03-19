@@ -1,6 +1,9 @@
 class CoursesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
-  	@courses = Course.all
+    @courses = Course.all
   end
 
   def new
@@ -21,21 +24,26 @@ class CoursesController < ApplicationController
   def subscribe
   	user = current_user
   	course = Course.find(params[:course_id])
-
     user.courses << course
-
     redirect_to root_path
   end
 
   def unsubscribe
     user = current_user
     course = Course.find(params[:course_id])
-
     user.courses.delete(course)
-    redirect_to root_path
-  	
+    redirect_to root_path	
   end
 
+  def teacher
+    @mycourses = Course.where(owner_id: current_user.id)
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+    redirect_to courses_teacher_path
+  end
 
   private
   	def course_params
