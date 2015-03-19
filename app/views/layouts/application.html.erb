@@ -7,17 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if user_signed_in? %>		
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="">Udemi</a>
+	    </div>	    
+	      <ul class="nav navbar-nav">
+	      	<li><%= link_to "Courses", courses_path %></a></li>
+	        <li><%= link_to "My courses", courses_teacher_path %></a></li>
+	      </ul>	      
+	      <ul class="nav navbar-nav navbar-right">
+			<% if user_signed_in? %>
+				<li class="navpad">Logged in as <strong><%= current_user.email %></strong></li>
+				<li><%= link_to 'Edit profile', edit_user_registration_path%></li>
+				<li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+			<% else %>
+				<li><%= link_to 'Sign up', new_user_registration_path %></li>
+				<li><%= link_to 'Login', new_user_session_path %></li>
+			<% end %>
+	      </ul>
+	    
+	  </div><!-- /.container-fluid -->
+	</nav>
+<% end %>
+
 	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-	
-	<% if user_signed_in? %>
-		Logged in as <strong><%= current_user.email %></strong>
-		<%= link_to 'Edit profile', edit_user_registration_path%>
-		<%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-	<% else %>
-		<%= link_to 'Sign up', new_user_registration_path %>
-		<%= link_to 'Login', new_user_session_path %>
-	<% end %>
 
 <%= yield %>
 
