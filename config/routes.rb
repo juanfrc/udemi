@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  get 'courses/index','courses/subscribe', 'courses/unsubscribe'
-  get 'courses/teacher'
+  get 'courses/index', 'courses/teacher'
+
+  post 'courses/subscribe', 'courses/unsubscribe'
+  
   resources :courses
 
 devise_scope :user do

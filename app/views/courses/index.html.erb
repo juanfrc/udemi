@@ -19,9 +19,9 @@
 					<% else %>
 						<td>
 							<% if current_user.courses.include? course %>
-								<%= link_to "Unsubscribe", courses_unsubscribe_path(course_id: course.id) %>
+								<%= link_to "Unsubscribe", courses_unsubscribe_path(course_id: course.id), method: :post%>
 							<% else  %>
-								<%= link_to "Subscribe", courses_subscribe_path(course_id: course.id) %>
+								<%= link_to "Subscribe", courses_subscribe_path(course_id: course.id), method: :post %>
 							<% end %>
 						</td>
 					<% end %>
